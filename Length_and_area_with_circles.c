@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <math.h>
-#include <ctype>
+#include <ctype.h>
 
 // print area function
-
+//void printArea(double rad, double theata) {
+	//double 
+//}
 
 
 // print length function
@@ -16,30 +18,34 @@ int main() {
 	double radius, theta;
 	double area, length;
 
-	char q, select;
+	int loopAgain;
+	//char 'y';
+	char select;
 
-	printf("ENter in a ratius and agnel of theta in degrees.\n");
-	printf("Radius = ");
-	scanf("%lf", &radius);
-	printf("Enter in theta");
-	scanf("%lf", &theta);
-	
-	
 	do {
 
-		printf(" what calulation woudl you lieki top do, "L" for Length, A for area");
+	printf("Enter in a ratius and agnel of theta in degrees.\n");
+	printf("Radius = ");
+	scanf("%lf", &radius);
+	printf("Theta =");
+	scanf("%lf", &theta);
+	printf("\n");
+	
+
+
+		printf(" what calulation would you like to do, 'L' for Length, 'A' for area\n");
 		scanf(" %c", &select);
-		if (select == a) {
-			selesct = toupper(select);
+		if (select == 'a') {
+			select = toupper(select);
 		}
 
-		else if (selects == 'l') {
-			selects = toupper(select);
+		else if (select == 'l') {
+			select = toupper(select);
 
 		}
 
 
-		if select == 'A') {
+		if (select == 'A') {
 			//call function print area
 		}
 
@@ -47,8 +53,11 @@ int main() {
 			//call function print length
 		}
 
+		printf("Woudl you like to do a new calulation? y/n");
+		scanf(" %c", loopAgain);
+		
 
-	} while (q != 'q');
+	} while (loopAgain == 'y');
 
 	return 0;
 }
