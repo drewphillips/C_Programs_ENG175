@@ -2,6 +2,20 @@
 #include <math.h>
 #include <ctype.h>
 
+
+
+/*
+Write a C program to work with Length and Area with Circles.  Your code must ...
+
+Read in r and degree angle theta
+Ask the user to choose area or length
+Based on the user choice
+Call a user defined function to calculate and print the area of the sector, segment and triangle.  Print to 3 decimals.
+Call a user defined function to calculate and print the length of the chord and arc.  Print to 3 decimals.
+Loop until the user wants to quit.
+*/
+
+
 // print area function
 //void printArea(double rad, double theata) {
 	//double 
