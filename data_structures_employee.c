@@ -15,7 +15,7 @@ typedef struct {
 
 int main()
 {
-    employeeStruct emp[5]; 
+    employeeStruct emp[2]; 
     int i;
     int numEmps = 2;
 
@@ -23,25 +23,26 @@ int main()
     printf("First Name, Last Name, ID Number, Years Emplyed, Salary.\n");
     for (i =0; i < numEmps; i++) {
 
-        printf("\tFirst Name = ");
+        printf("\tFirst Name = \n");
         scanf(" %s", emp[i].firstName);
-        printf("\tLast Name = ");
+        printf("\tLast Name = \n");
         scanf(" %s", emp[i].lastName);
-        printf("\tEmployee ID number = ");
+        printf("\tEmployee ID number = \n");
         scanf("%d", &emp[i].ID);
-        printf("\tYears at this complany = ");
+        printf("\tYears at this complany = \n");
         scanf("%lf", &emp[i].yearsAt);
-        printf("\tSalary = ");
+        printf("\tSalary = \n");
         scanf("%d", &emp[i].salary);
 
     
     }
     
     for (i=0; i < numEmps; i++) {
-        printf("\t %s\n", emp[i].firstName);
-        printf("\t %s\n", emp[i].lastName);
+        printf("\n")
+        printf("\t%s\n", emp[i].firstName);
+        printf("\t%s\n", emp[i].lastName);
         printf("\tID Number %d\n", emp[i].ID);
-        printf("\t %s has been working here %.2lf years\n", emp[i].firstName, emp[i].yearsAt);
+        printf("\t%s has been working here %.2lf years\n", emp[i].firstName, emp[i].yearsAt);
         printf("\tAnd we pay him/her $%d\n", emp[i].salary);
     }
     
