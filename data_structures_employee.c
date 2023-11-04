@@ -15,7 +15,7 @@ typedef struct {
 
 int main()
 {
-    employeeStruct emp[2]; 
+    employeeStruct emp[5];
     int i;
     int numEmps = 2;
 
@@ -23,28 +23,28 @@ int main()
     printf("First Name, Last Name, ID Number, Years Emplyed, Salary.\n");
     for (i =0; i < numEmps; i++) {
 
-        printf("\tFirst Name = \n");
+        printf("\tFirst Name \n\t");
         scanf(" %s", emp[i].firstName);
-        printf("\tLast Name = \n");
+        printf("\tLast Name \n\t");
         scanf(" %s", emp[i].lastName);
-        printf("\tEmployee ID number = \n");
+        printf("\tEmployee ID number \n\t");Sy
         scanf("%d", &emp[i].ID);
-        printf("\tYears at this complany = \n");
+        printf("\tYears at this complany \n\t");
         scanf("%lf", &emp[i].yearsAt);
-        printf("\tSalary = \n");
+        printf("\tSalary \n\t");
         scanf("%d", &emp[i].salary);
 
-    
     }
     
     for (i=0; i < numEmps; i++) {
         printf("\n");
+        printf("Unepic Networks Employee number %d", i+1);
         printf("\t%s\n", emp[i].firstName);
         printf("\t%s\n", emp[i].lastName);
         printf("\tID Number %d\n", emp[i].ID);
         printf("\t%s has been working here %.2lf years\n", emp[i].firstName, emp[i].yearsAt);
         printf("\tAnd we pay him/her $%d\n", emp[i].salary);
     }
-    
+
     return 0;
 }
