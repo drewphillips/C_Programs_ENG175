@@ -38,7 +38,7 @@ int main()
     
     for (i=0; i < numEmps; i++) {
         printf("\n");
-        printf("Unepic Networks Employee number %d", i+1);
+        printf("Unepic Networks Employee number %d\n", i+1);
         printf("\t%s\n", emp[i].firstName);
         printf("\t%s\n", emp[i].lastName);
         printf("\tID Number %d\n", emp[i].ID);
