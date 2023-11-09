@@ -19,7 +19,6 @@ brandRecords[i].percent
 brandRecords[i].revenue
 */
 
-
 int main(void) {
 	BrandStruct brandRecords[100];
 	int i = 0;
@@ -61,48 +60,46 @@ int main(void) {
 
             i = i + 1;
         }
+        
+        //Find and print the min, max and avg BrandRevenue ($billions). Associate the Industry with the min.  Print to the same file
+
         numRecords = i;
         minValue = 999999;
         maxValue = 0;
-         for (i=0; i < numRecords; i++) {
+        for (i = 0; i < numRecords; i++) {
             if (brandRecords[i].value < minValue) {
-            strcpy(minBrand, brandRecords[i].industry);
+                //strcpy(minBrand, brandRecords[i].industry);
                 minValue = brandRecords[i].value;
-            }        
+            }
             if (brandRecords[i].value > maxValue) {
-            strcpy(maxBrand, brandRecords[i].industry);
+                //strcpy(maxBrand, brandRecords[i].industry);
                 maxValue = brandRecords[i].value;
             }
-            
-            avgValue = avgValue + brandRecords[i].value;
-         }
 
+            avgValue = avgValue + brandRecords[i].value;
+        }
 
         //Find and print the min, max and avg BrandRevenue ($billions). Associate the Industry with the min.  Print to the same file
-
 
         numRecords = i;
         minRevenue = 999999;
         maxRevenue = 0;
-         for (i=0; i < numRecords; i++) {
+        for (i = 0; i < numRecords; i++) {
             if (brandRecords[i].revenue < minRevenue) {
-            //strcpy(minBrand[i], brandRecords[i].brands);
+                strcpy(minBrand, brandRecords[i].industry);
                 minRevenue = brandRecords[i].revenue;
-            }        
+            }
             if (brandRecords[i].revenue > maxRevenue) {
-            //strcpy(maxBrand, brandRecords[i].brand)
+                strcpy(maxBrand, brandRecords[i].industry);
                 maxRevenue = brandRecords[i].revenue;
             }
-            
-            avgRevenue = avgRevenue + brandRecords[i].revenue;
-         }
 
+            avgRevenue = avgRevenue + brandRecords[i].revenue;
+        }
    
 	    fprintf(brandOUTFILE, "_____________________BRAND RECORDS_____________________\n\n");
 
-
         //Find and print the min, max and avg BrandValue ($billions) to a file
-
 
        fprintf(brandOUTFILE, "The lowest brand value is: $%lf Billion \n", minValue);
 
@@ -110,11 +107,7 @@ int main(void) {
 
        fprintf(brandOUTFILE, "The average brand value is %lf\n", avgValue / numRecords);
 
-       
-
-
     // Find and print the min, max and avg BrandRevenue ($billions). Associate the Industry with the min.  Print to the same file
-
 
  fprintf(brandOUTFILE, "The lowest brand revenue is: $%lf Billion from the industy %s \n", minRevenue, minBrand);
 
@@ -122,9 +115,6 @@ int main(void) {
 
        fprintf(brandOUTFILE, "The average brand revenue is %lf\n", avgRevenue / numRecords);
     
-
-
-
         for (i = 0; i < numRecords; i++) {
         //	fprintf(brandOUTFILE, "Brand: %d \n", i + 1);
         fprintf(brandOUTFILE, "Brand: %s \n", brandRecords[i].brands);
