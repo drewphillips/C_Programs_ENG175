@@ -81,15 +81,15 @@ int main(void) {
 
         //Find and print the minimum median pay to a file
  
-        fprintf(careerOUTFILE, "Minimum Median Pay = %d\n", min);
+        fprintf(careerOUTFILE, "Minimum Median Pay = $%d Thousand a year\n", min);
 
         //Find and print the maximum top pay and the career associated with the max to the same file
 
-        fprintf(careerOUTFILE, "The top paying job on this list is %s at a whopping $%d\n", maxCareer, max);
+        fprintf(careerOUTFILE, "The top paying job on this list is %s at a whopping $%d Thousand a year\n", maxCareer, max);
 
         //Find and print the average median and top pay to the same file
 
-        fprintf(careerOUTFILE, "The Average median pay is %.2lf and the average top pay is %lf\n", aveMed / numRecords, aveTop / numRecords);
+        fprintf(careerOUTFILE, "The Average median pay is $%.0lf Thousand a year and the average top pay is $%.0lf Thousand a year\n", aveMed / numRecords, aveTop / numRecords);
         
         //fprintf(careerOUTFILE, "The Average Top Pay for %s = %.2lf\n", maxCareer, (aveTop / numRecords));
 
