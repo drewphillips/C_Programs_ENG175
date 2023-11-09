@@ -1,0 +1,27 @@
+_____________________CAREER RECORDS_____________________
+
+The number of entries is: 20
+Minimum Median Pay = 66
+Maximum Top Pay = 0
+The best job on this list is Technical_Writer, with a median pay of 112.800000 and a top pay of = 179.60
+ Account_Executive 81 157 
+  Certified_Public_Accountant 74 138 
+  Computer_Security_Consultant 100 138 
+  Director_of_Communications 78 135 
+  Finacial_Analyst 80 109 
+  Finance_Director 121 214 
+  Financial_Research_Analyst 66 155 
+  Hotel_General_Manager 77 146 
+  Human_Resources_Manager 72 111 
+  Investment_Banking_ 106 221 
+  IT_Buisness_Analyst 83 119 
+  IT_Project_Manager 99 140 
+  Marketing_Manager 77 126 
+  Quality-Assurance_Manager 80 122 
+  Sales_Representative 67 125 
+  Senior_Internal_Auditor 76 106 
+  Software_Developer 79 116 
+  Software_Program_Manager 110 152 
+  Systems_Engineer 87 130 
+  Technical_Writer 67 100 
+ 
