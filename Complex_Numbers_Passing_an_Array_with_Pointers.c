@@ -74,7 +74,7 @@ void multiply2UDF(double Coeffs[5]) {
     imag = ( (Coeffs[0] * Coeffs[3]) + (Coeffs[1] * Coeffs[2]) );
     printf("Multiply the complext numbers and you get: %.2lf + %.2lfi", real, imag);
 
-    retur;
+    return;
 }
 
 void TimesConjugate(double Coeffs[5]) {
