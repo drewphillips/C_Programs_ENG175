@@ -70,9 +70,20 @@ void multiplyUDF(double Coeffs[5]) {
 void multiply2UDF(double Coeffs[5]) {
     double real;
     double imag;
+    char operator;
+    
     real = ( (Coeffs[0] * Coeffs[2]) - (Coeffs[1] * Coeffs[3]) );
     imag = ( (Coeffs[0] * Coeffs[3]) + (Coeffs[1] * Coeffs[2]) );
-    printf("Multiply the complext numbers and you get: %.2lf + %.2lfi", real, imag);
+    if (imag < 0) {
+        operator = '-';
+        imag = imag * -1;
+    }
+        else {
+        operator = '+';
+    }
+    
+    printf("Multiply the complext numbers and you get: %.2lf %c %.2lfi", real, operator, imag);
+        
 
     return;
 }
