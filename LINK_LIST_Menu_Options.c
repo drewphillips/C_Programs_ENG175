@@ -12,57 +12,71 @@ int NodeCount();	            //function to count the nodes
 void displayList();             //function to display the list
 void MinMaxAvg();
 
-int main(){
-    int n,totalNode;
-    int menu;
+int main() {
+    int n, totalNode;
+    int menu = 5;
     char loopAgain;
+    char loopMenu;
 
-
-   
+    do {
 
         printf("\n\nCreate a singly linked list and count the number of nodes :\n");
-		printf("------------------------------------------------------------------------------\n");
+        printf("------------------------------------------------------------------------------\n");
         printf(" Input the number of nodes : ");
         scanf("%d", &n);
         createNodeList(n);
 
+        do {
 
-         do {
-        printf("\n\t4 menu options to select from, please enter 0-3\n\n");
-        printf("\t0) Exit the program.\n\t1) Display list.\n\t2) Count nodes in list.\n\t3) Find the Min/Max average of the list.\n");
-        scanf("\t%d", &menu);
-    
-        if (menu == 1) {
-            printf("\n Data entered in the list are : \n");		
-            displayList();
-        }
+            printf("\n\t4 menu options to select from, please enter 0-3\n\n");
+            printf("\t0) Exit the program.\n\t1) Display list.\n\t2) Count nodes in list.\n\t3) Find the Min/Max average of the list.\n");
+            scanf("\t%d", &menu);
+            switch (menu) {
 
-        else if (menu == 2) {
-        totalNode = NodeCount();
-        printf("\n Total number of nodes = %d\n", totalNode);
-        
-        }
 
-        else if (menu == 3) {
-            //add one udf to calculate the min, max and average of the data in the linked lists.  Add 3. MinMaxAvg List to the menu.
-            //printf("Min Max average = ");
-            MinMaxAvg();
-        }
 
-        else if (menu == 0) {
-        return 0;
-        }
+            case 0:
+                return 0;
+                break;
 
-        else {
-        printf("You can only select 0-3, please try again.\n");
-        }
+            case 1:
 
-        printf("Would you like to select a new menu option? y/n");
+                printf("\n Data entered in the list are : \n");
+                displayList();
+                break;
+
+            case 2:
+
+                totalNode = NodeCount();
+                printf("\n Total number of nodes = %d\n", totalNode);
+
+                break;
+
+            case 3:
+
+                //add one udf to calculate the min, max and average of the data in the linked lists.  Add 3. MinMaxAvg List to the menu.
+                //printf("Min Max average = ");
+                MinMaxAvg();
+
+                break;
+
+
+            default:
+                printf("You can only select 0-3, please try again.\n");
+
+            }
+
+            printf("Would you like to select a new menu option? y/n");
+            scanf(" %c", &loopMenu);
+            loopMenu = toupper(loopMenu);
+
+        } while (loopMenu == 'Y');
+
+        printf("Would you like to start over y/n");
         scanf(" %c", &loopAgain);
         loopAgain = toupper(loopAgain);
 
-    } while (loopAgain == 'Y');    
-
+    } while (loopAgain == 'Y');
 
     return 0;
 }
