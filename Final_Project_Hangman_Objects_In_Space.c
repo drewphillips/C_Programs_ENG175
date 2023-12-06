@@ -104,22 +104,21 @@ int main(void) {
 			guess = getguess();
 
 
-			//(4 pts) update the wrong letter count to also display a list of wrong letters that
-			//wrongLetters[j] = getguess();
-
-
 			if (!processguess(challenge, gword, wordLen, guess))
 				wrongs++;
 
-			for (k = 0; k <= wordLen + 1; k++) {
+			
+			//(4 pts) update the wrong letter count to also display a list of wrong letters that
+			
+			for (k = 0; k <= wordLen; k++) {
 
 				if (guess == gword[k]) {
-					k = wordLen + 1;
+					k = wordLen;
 
 				}
 				else { //(guess != challenge[k]) {
 					wrongLetters[j] = guess;
-					k = wordLen + 1;
+					k = wordLen;
 					j++;
 				}
 			}
