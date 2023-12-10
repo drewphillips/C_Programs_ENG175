@@ -75,6 +75,7 @@ int main(void) {
 	int again = 1;            // flags 1 to play again 0 to quit game
 	int won = 0;            // flags 1 if win and 0 if loss
 	char wrongLetters[26];
+	char cmpstr[wordLen];
 	int j, k;
 	char loopAgain;
 
@@ -109,14 +110,20 @@ int main(void) {
 
 			
 			//(4 pts) update the wrong letter count to also display a list of wrong letters that
+			for (k = 0; k <= wordLen; k++) {
+				cmpstr[k] = guess;
+			}
+
+			//for (k = 0; k <= wordLen; k++) {
+
+				//if (guess == gword[k]) {
+					//k = wordLen;
+
+				//}
 			
 			for (k = 0; k <= wordLen; k++) {
-
-				if (guess == gword[k]) {
-					k = wordLen;
-
-				}
-				else { //(guess != challenge[k]) {
+			
+				if (cmpstr[k] != challenge[k]) {
 					wrongLetters[j] = guess;
 					k = wordLen;
 					j++;
