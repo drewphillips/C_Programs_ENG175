@@ -1,17 +1,12 @@
+// Objects in Space, Final Project ENG175
+// FIX ME, capitalize first letter of printed word, while still accepting lower case from user guess
+// FIXME, dont add correct letter to wrongLetter arry 
 /*
-
-(2 pts) have a creative opening banner
 check out ideas from ASCII Art Generator
-
 (4 pts) update the wrong letter count to also display a list of wrong letters that the user incorrectly guessed
-
-
-
 (2 pts) game should compile and run smoothly without delay or interruption
 (2 pts) loop the game until the user wants to quit
 */
-
-
 
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
@@ -68,14 +63,13 @@ int main(void) {
 
 	char* challenge;            // current word to be guessed
 
-	int    used[NUMWORDS] = { 0 };    // frequency count of words used so far
-	int    wrongs = 0;            // count of wrong guesses
+	int used[NUMWORDS] = { 0 };    // frequency count of words used so far
+	int wrongs = 0;            // count of wrong guesses
 	int wordLen;            // length of current hangman word
 	int loop;                // loop counter
 	int again = 1;            // flags 1 to play again 0 to quit game
 	int won = 0;            // flags 1 if win and 0 if loss
 	char wrongLetters[26];
-	char cmpstr[wordLen];
 	int j, k;
 	char loopAgain;
 
@@ -96,7 +90,7 @@ int main(void) {
 		while (wrongs < MAXGUESS && !won)
 		{
 			drawfig(wrongs, wrongLetters, wordLen);
-
+			printf("\t");
 			for (loop = 0; loop < wordLen; loop++)
 				printf("%c ", gword[loop]);
 
@@ -105,25 +99,21 @@ int main(void) {
 			guess = getguess();
 
 
+			//(4 pts) update the wrong letter count to also display a list of wrong letters that
+
+
+
 			if (!processguess(challenge, gword, wordLen, guess))
 				wrongs++;
 
-			
 			//(4 pts) update the wrong letter count to also display a list of wrong letters that
-			for (k = 0; k <= wordLen; k++) {
-				cmpstr[k] = guess;
-			}
+			for (k = 0; k < wordLen; k++) {
 
-			//for (k = 0; k <= wordLen; k++) {
+				if (guess == gword[k]) {
+					k = wordLen;
 
-				//if (guess == gword[k]) {
-					//k = wordLen;
-
-				//}
-			
-			for (k = 0; k <= wordLen; k++) {
-			
-				if (cmpstr[k] != challenge[k]) {
+				}
+				else {
 					wrongLetters[j] = guess;
 					k = wordLen;
 					j++;
@@ -136,10 +126,11 @@ int main(void) {
 
 			if (won)
 			{
+				printf("\t");
 				for (loop = 0; loop < wordLen; loop++)
 					printf("%c ", gword[loop]);
 				printf("\n");
-				printf("You win!\n");
+				printf("\tYou win!\n");
 				wrongs = 0;
 				won = 0;
 				break;
@@ -148,14 +139,14 @@ int main(void) {
 			if (wrongs >= MAXGUESS)
 			{
 				drawfig(wrongs, wrongLetters, wordLen);
-				printf("You lost! The word was %s\n", challenge);
+				printf("\tYou lost! The word was %s\n", challenge);
 				wrongs = 0;
 				break;
 			}
 
 		}  /* end of inner while loop */
 
-		printf("Do you want to play again? [y/n]: ");
+		printf("\tDo you want to play again? [y/n]: ");
 		guess = getchar();
 		getchar();
 		if (guess == 'n' || guess == 'N')
@@ -200,7 +191,7 @@ char getguess(void)
 {
 	char g;
 	//(4 pts) add color to make your game more readable
-	printf(CYAN"Your guess: "RESET);
+	printf(CYAN"\tYour guess: "RESET);
 	g = getchar();
 	getchar();
 	return g;
@@ -235,21 +226,42 @@ int checkwin(char c[], char g[], int l)
 
 
 void showLogo() {
-	printf("**********************************************************\n");
-	printf("\n");
+	printf("\t***********************************************************\n");
+	printf("\t                   \n");
+	printf("\t     000000000            IIIIIIII        SSSSSSSSSSSSSSSS  \n");
+	printf("\t   00:::::::::00          I::::::I      SS::::::::::::::::S \n");
+	printf("\t 00:::::::::::::00        I::::::I     S:::::SSSSSSS::::::S \n");
+	printf("\t0:::::::000:::::::0       II::::II     S:::::S      SSSSSSS \n");
+	printf("\t0::::::0   0::::::0        I::::I      S:::::S              \n");
+	printf("\t0:::::0     0:::::0        I::::I      S:::::S              \n");
+	printf("\t0:::::0     0:::::0        I::::I       S::::SSSS           \n");
+	printf("\t0:::::0     0:::::0        I::::I        SS::::::SSSSS      \n");
+	printf("\t0:::::0     0:::::0        I::::I          SSS::::::::SS    \n");
+	printf("\t0:::::0     0:::::0        I::::I             SSSSSS::::S   \n");
+	printf("\t0:::::0     0:::::0        I::::I                  S:::::S  \n");
+	printf("\t0::::::0   0::::::0        I::::I                  S:::::S  \n");
+	printf("\t0:::::::000::::::0         I::::I      SSSSSSS     S:::::S  \n");
+	printf("\t 00::::::::::::00         II::::II     S::::::SSSSSS:::::S  \n");
+	printf("\t   00::::::::00           I::::::I     S:::::::::::::::SS   \n");
+	printf("\t     00000000             IIIIIIII      SSSSSSSSSSSSSSS     \n");
+	printf("\t                   \n");
+	printf(CYAN"\t      OBJECTS                ");
+	printf(BLUE"IN              "RESET);
+	printf(MAGENTA"SPACE\n"RESET);
 	//FIXME
-	printf(MAGENTA "BANNER>>>> " RESET);
-	printf(MAGENTA "\t\t Coded by Dean Phillips\n" RESET);
-	printf("**********************************************************\n\n");
+	printf(MAGENTA "\t\n" RESET);
+	puts(CYAN"\n\t\t\t     Welcome to Hangman!\n");
+	printf(MAGENTA "\t\t\t    Coded by Drew Phillips\n" RESET);
+	printf("\t***********************************************************\n\n");
 }
 
 //(2 pts) update wording in directions so the player knows how to play, what theme words to guess, etc.
 void printInstructions() {
-	puts(MAGENTA"\t\tWelcome to Hangman!");
-	puts("\t\tTry to guess my secret word one letter at a time.");
-	puts("\t\tThe theme of this game is OBJECTS IN SPACE,\n\t\tplanets would be a good guess but what other objects are in space?\n\t\tMan made obects are inclueded and also things that just pass by...");
-	puts("\t\tYou can enter both uppercase and lowercase letters.");
-	puts("\t\tYou have a total of 10 guesses ... Ready set go!!\n\n"RESET);
+	//puts(MAGENTA"\t\tWelcome to Hangman!");
+	puts(CYAN"\tTry to guess my secret word one letter at a time.");
+	puts("\tThe theme of this game is OBJECTS IN SPACE!\n\tPlanets would be a good guess but what other objects are in space?\n\tMan made obects are inclueded and also things that just pass by...");
+	puts("\tYou can enter both uppercase and lowercase letters.");
+	puts("\tYou have a total of 10 guesses ... Ready set go!!\n\n"RESET);
 }
 
 void drawfig(const int i, char WrongLetters[21], int WordLen)
@@ -268,8 +280,8 @@ void drawfig(const int i, char WrongLetters[21], int WordLen)
 		the drawing is built from the bottom up. */
 	{
 	case 0:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
@@ -280,223 +292,225 @@ void drawfig(const int i, char WrongLetters[21], int WordLen)
 		printf("\n");
 		printf("\n");
 		printf("\n");
-		printf(GREEN"____________\n\n"RESET);
+		printf(GREEN"\t____________\n\n"RESET);
 		break;
 	case 1:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 		printf("\n");
 		printf("\n");
-		printf(CYAN"  |\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(CYAN"\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 	case 2:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 	case 3:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n");
-		printf("  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 	case 4:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |\n");
-		printf("  |\n");
-		printf("  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(CYAN"\t  |\n");
+		printf("\t  |\n");
+		printf("\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//body is drawn
 	case 5:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |    ");
+		printf(CYAN"\t  |    ");
 		printf(YELLOW"|\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"    |\n"RESET);
-		printf(CYAN"  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(CYAN"\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//left arm
 	case 6:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |   ");
+		printf(CYAN"\t  |   ");
 		printf(YELLOW"\\|\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"    |\n"RESET);
-		printf(CYAN"  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(CYAN"\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//right arm
 	case 7:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |   ");
+		printf(CYAN"\t  |   ");
 		printf(YELLOW"\\|/\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"    |\n"RESET);
-		printf(CYAN"  |\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(CYAN"\t  |\n"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//left leg
 	case 8:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |   ");
+		printf(CYAN"\t  |   ");
 		printf(YELLOW"\\|/\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"    |\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"   /\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//right leg
 	case 9:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(YELLOW"O\n"RESET);
-		printf(CYAN"  |   ");
+		printf(CYAN"\t  |   ");
 		printf(YELLOW"\\|/\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"    |\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(YELLOW"   / \\\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
 		printf(GREEN"_________\n\n"RESET);
 		break;
 		//dead
 	case 10:
-		printf(BLUE"Amount of wrong letters: %d\n\n"RESET, i);
-		printf(BLUE"Previusly guessed letters:"RESET);
+		printf(BLUE"\tAmount of wrong letters: %d\n\n"RESET, i);
+		printf(BLUE"\tPreviusly guessed letters:"RESET);
 		for (int j = 0; j < i + WordLen; j++) {
 			printf(" %c", WrongLetters[j]);
 		}
 
 		printf("\n");
 		printf("\n");
-		printf(YELLOW"  _______\n"RESET);
-		printf(CYAN"  |/   |\n");
-		printf("  |    ");
+		printf(YELLOW"\t  _______\n"RESET);
+		printf(CYAN"\t  |/   |\n");
+		printf("\t  |    ");
 		printf(RED"X\n"RESET);
-		printf(CYAN"  |   ");
+		printf(CYAN"\t  |   ");
 		printf(RED"\\|/\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(RED"    |\n"RESET);
-		printf(CYAN"  |"RESET);
+		printf(CYAN"\t  |"RESET);
 		printf(RED"   / \\\n"RESET);
-		printf(GREEN"__"RESET);
+		printf(GREEN"\t__"RESET);
 		printf(CYAN"|"RESET);
-		printf(GREEN"_________\n\n"RESET);
+		printf(GREEN"___");
+		printf(RED"___"RESET);
+		printf(GREEN"___"RESET);
 		break;
 	}
 	printf("\n");
